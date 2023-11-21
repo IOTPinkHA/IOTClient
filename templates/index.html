@@ -1,0 +1,93 @@
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flash-messages">
+      {% for message in messages %}
+        <div class="flash-message">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QLSV</title>
+    <link rel="stylesheet" href="../static/style/index.css">
+
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Trang Chủ</a></li>
+                <li><a href="javascript:void(0);" onclick="confirmLogout()">Đăng xuất</a></li>
+
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="profile">
+            <h3>THÔNG TIN GIẢNG VIÊN</h3>
+            <h3>Họ và tên: {{ full_name }}</h3>
+            <p>Email: {{ email }}</p>
+        </div>
+    </div>
+    <div class="table-student">
+        <h3>Thông tin các môn học</h3>
+        
+        <table id="student-table">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên lớp học</th>
+                    <th>Mã môn học</th>
+                    <th>Nhóm lớp</th>
+                    <th>Danh sách sinh viên</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if courses %}
+                    {% for course in courses %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ course.name }}</td>
+                            <td>{{ course.code }}</td>
+                            <td>{{ course.class_group }}</td>
+                            <td><a href="{{ url_for('list_student', course_id=course.id) }}">Xem</a></td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="5">Không có môn học nào.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+        <a class="custom-button" id="add-course-link" href="{{ url_for('add')}}">Thêm lớp học</a>
+    </div>
+    
+    <footer>
+        &copy; 2023 QLSV, Học viện Công Nghệ Bưu Chính Viễn Thông, PTIT, Hà Đông-Hà Nội
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        var flashMessages = document.querySelectorAll('.flash-message');
+
+        flashMessages.forEach(function (message) {
+            setTimeout(function () {
+                message.style.display = 'none';
+            }, 3000);  // 5 seconds, adjust as needed
+        });
+        });
+
+        function confirmLogout() {
+        var isConfirmed = confirm("Bạn có muốn đăng xuất không?");
+        if (isConfirmed) {
+            window.location.href = "{{ url_for('logout') }}";
+        }
+    }
+    </script>
+</body>
+</html>

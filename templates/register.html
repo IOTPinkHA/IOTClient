@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QLSV_Đăng ký</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+</head>
+
+<body>
+  <div class="main">
+    <form action="/" method="POST" class="form" id="form-1">
+      <h3 class="heading">Đăng ký tài khoản</h3>
+      <p class="desc">Hệ thống quản lý sinh viên</p>
+      <div class="form-group">
+        <label for="fullname" class="form-label">Tên đầy đủ</label>
+        <input id="fullname" name="fullname" type="text" placeholder="Nhập tên của bạn" class="form-control" required>
+        <span class="form-message"></span>
+      </div>
+      <div class="form-group">
+        <label for="email" class="form-label">Email</label>
+        <input id="email" name="email" type="email" placeholder="Nhập email của bạn" class="form-control" required>
+        <span class="form-message"></span>
+
+      </div>
+      <div class="form-group">
+        <label for="password" class="form-label">Mật khẩu</label>
+        <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" class="form-control" required>
+        <span class="form-message"></span>
+
+      </div>
+      <div class="form-group">
+        <label for="password_confirmation" class="form-label">Nhập lại mật khẩu</label>
+        <input id="password_confirmation" name="password_confirmation" type="password" placeholder="Nhập lại mật khẩu"
+          class="form-control" required>
+        <span class="form-message"></span>
+
+      </div>
+      <button type="submit" class="form-submit">Đăng ký</button>
+
+      <a href="{{ url_for('login') }}">Đăng nhập</a>
+      <p class="form-messages">{{ message }}</p>
+    </form>
+  </div>
+  <script src="{{ url_for('static', filename='main/validator.js') }}"></script>
+  <script src="{{ url_for('static', filename='main/register.js') }}"></script>
+</body>
+
+</html>

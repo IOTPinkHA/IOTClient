@@ -1,0 +1,95 @@
+/* styles.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #1dbfaf;
+    color: #fff;
+    padding: 1rem 0;
+}
+
+nav ul {
+    list-style: none;
+
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 40px;
+    margin-left: 40px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+nav ul li:last-child {
+    float: right; /* Chuyển mục cuối cùng sang phải */
+}
+
+main {
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #333;
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+footer {
+    background-color: #1dbfaf;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+#student-table {
+    border-collapse: collapse; /* Kết hợp viền giữa các ô thành một đường liền */
+    width: 100%; /* Chiều rộng của bảng */
+    position: relative;
+}
+
+#student-table th, #student-table td {
+    border: 1px solid black; /* Đặt viền cho cả ô th và ô td */
+    padding: 8px; /* Khoảng cách giữa nội dung và viền */
+    text-align: left; /* Căn lề nội dung trong ô */
+}
+
+#exportButton {
+    margin: 10px; /* Thêm margin nếu bạn muốn tạo khoảng cách giữa nút và bảng */
+    float: right;
+}

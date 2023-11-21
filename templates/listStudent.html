@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/styleNewpage.css') }}">
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <title>QLSV_Danh sách sinh viên</title>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index')}}">Trang chủ</a></li>
+                <li><a href="javascript:void(0);" onclick="confirmLogout()">Đăng xuất</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Danh Sách Sinh Viên</h1>
+        <h3>Môn học: IoT và ứng dụng</h3>
+        <p>Điểm thành phần</p>
+        <p>Điểm chuyên cần: 10%</p>
+        <p>Điểm kiểm tra/thực hành: 20%</p>
+        <p>Điểm thi cuối kì: 60%</p>
+
+        <table id="student-table">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Mã sinh viên</th>
+                    <th>Họ và tên</th>
+                    <th>Lớp tín chỉ</th>
+                    <th>Số điện thoại</th>
+                    <th>Email</th>
+                    <th>Điểm danh</th>
+                    <th>Thời gian đến</th>
+                </tr>
+            </thead>
+            <tbody>
+                    {% for i in range(students|length): %}
+                        <tr>
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ students[i].student_id }}</td>
+                            <td>{{ students[i].name }}</td>
+                            <td>{{ students[i].class_credits }}</td>
+                            <td>{{ students[i].phone_number }}</td>
+                            <td>{{ students[i].email }}</td>
+                            <td id="attendee_{{students[i].student_id}}" style="text-align: center"></td>
+                            <td id="time_{{students[i].student_id}}"></td>
+                        </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Học viện Công Nghê Bưu Chính Viễn Thông, PTIT, Mộ Lao-Hà Đông-Hà Nội</p>
+    </footer>
+    <script>
+        function confirmLogout() {
+            var isConfirmed = confirm("Bạn có muốn đăng xuất không?");
+            if (isConfirmed) {
+                window.location.href = "{{ url_for('logout') }}";
+            }
+        }
+
+        var socket = io.connect('http://127.0.0.1:5001');
+
+        socket.on('mqtt_message', function(msg) {
+            userId = msg.payload.userId
+            timeArrival = msg.payload.timeArrival
+            hour = timeArrival.split(' ')[1]
+            console.log(hour)
+		    $("#attendee_" + userId).append('<p>x</p>');
+		    $("#time_" + userId).append('<p>' + hour + '</p>');
+	    });
+
+        socket.on('socket_message', function(arrivalStudents) {
+            arrivalStudents.forEach((student) => {
+                userId = student['userId']
+                timeArrival = student['timeArrival']
+                hour = timeArrival.split(' ')[1]
+                console.log(hour)
+                $("#attendee_" + userId).append('<p>x</p>');
+                $("#time_" + userId).append('<p>' + hour + '</p>');
+            });
+        });
+    </script>
+</body>
+</html>

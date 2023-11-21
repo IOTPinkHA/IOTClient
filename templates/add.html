@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QLSV_Thêm sinh viên</title>
+    <link rel="stylesheet" href="../static/style/add.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Trang Chủ</a></li>
+                <li><a href="javascript:void(0);" onclick="confirmLogout()">Đăng xuất</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <h3>Thêm Môn Học</h3>
+        <form id="course-form" method="POST" action="/add" enctype="multipart/form-data" onsubmit="return confirmAdd()">
+            <label for="course-name">Tên lớp học:</label>
+            <input type="text" id="course-name" name="course_name" required><br>
+        
+            <label for="course-code">Mã môn học:</label>
+            <input type="text" id="course-code" name="course_code" required><br>
+        
+            <label for="class-group">Nhóm lớp:</label>
+            <input type="text" id="class-group" name="class_group" required><br>
+        
+            <label for="list_students">Thêm danh sách sinh viên:</label>
+            <input type="file" id="list_students" name="list_students" accept=".csv" required><br>
+        
+            <button type="submit" class="custom-button">Thêm</button>
+        </form>
+    </div>
+    <footer>
+        &copy; 2023 QLSV, Học viện Công Nghệ Bưu Chính Viễn Thông, PTIT, Hà Đông-Hà Nội
+    </footer>
+    <script>
+        function confirmLogout() {
+        var isConfirmed = confirm("Bạn có muốn đăng xuất không?");
+        if (isConfirmed) {
+            window.location.href = "{{ url_for('logout') }}";
+        }
+        }
+        function confirmAdd() {
+            var courseName = document.getElementById('course-name').value;
+            var courseCode = document.getElementById('course-code').value;
+            var classGroup = document.getElementById('class-group').value;
+
+            var isConfirmed = confirm("Bạn có muốn thêm lớp học?\nKiểm tra lại thông tin của bạn\n\nTên lớp học: " + courseName + "\nMã môn học: " + courseCode + "\nNhóm lớp: " + classGroup);
+            
+            return isConfirmed;
+        }
+    </script>
+</body>
+</html>
