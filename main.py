@@ -137,8 +137,9 @@ def add():
 @app.route('/liststudent/<int:course_id>', methods=['GET', 'POST'])
 def list_student(course_id):
     students = Student.query.filter_by(course_id=course_id).all()
+    course = Course.query.filter_by(id=course_id).first()
     print(students)
-    return render_template('listStudent.html', students=students)
+    return render_template('listStudent.html', students=students, course=course)
 
 ###########################################################################################################
 

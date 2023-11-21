@@ -29,9 +29,9 @@ class Course(db.Model):
 
 class Student(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    student_id = db.Column(db.String(20), unique=True, nullable=False)
+    student_id = db.Column(db.String(20), nullable=False)
     name = db.Column(db.String(100), nullable=False)
     class_credits = db.Column(db.String(20), nullable=False)
     phone_number = db.Column(db.String(15), nullable=True)
-    email = db.Column(db.String(255), unique=True, nullable=False)
+    email = db.Column(db.String(255), nullable=False)
     course_id = db.Column(db.Integer, db.ForeignKey('course.id'), nullable=False)
