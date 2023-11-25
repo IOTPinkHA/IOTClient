@@ -93,3 +93,20 @@ footer {
     margin: 10px; /* Thêm margin nếu bạn muốn tạo khoảng cách giữa nút và bảng */
     float: right;
 }
+
+.class-info {
+    padding: 0 20px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #1dbfaf;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
