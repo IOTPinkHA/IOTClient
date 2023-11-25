@@ -47,8 +47,9 @@
             var courseName = document.getElementById('course-name').value;
             var courseCode = document.getElementById('course-code').value;
             var classGroup = document.getElementById('class-group').value;
+            var listStudents = document.getElementById('list_students').value;
 
-            var isConfirmed = confirm("Bạn có muốn thêm lớp học?\nKiểm tra lại thông tin của bạn\n\nTên lớp học: " + courseName + "\nMã môn học: " + courseCode + "\nNhóm lớp: " + classGroup);
+            var isConfirmed = confirm("Bạn có muốn thêm lớp học?\nKiểm tra lại thông tin của bạn\n\nTên lớp học: " + courseName + "\nMã môn học: " + courseCode + "\nNhóm lớp: " + classGroup + "\nDanh sách sinh viên: " + listStudents);
             
             return isConfirmed;
         }

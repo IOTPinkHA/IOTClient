@@ -149,7 +149,6 @@ def handle_connect_mqtt(client, userdata, flags, rc):
     print('Connected to MQTT.')
     mqtt.subscribe('/face-recognition/attendee')
 
-
 @mqtt.on_message()
 def handle_message_mqtt(client, userdata, message):
     json_data = message.payload.decode('utf-8')
@@ -167,6 +166,7 @@ def handle_message_mqtt(client, userdata, message):
         userId = payload['userId']
         for s in arrivalStudents:
             if userId == s['userId']:
+                print("hi")
                 return
 
     socketio.emit('mqtt_message', data=data)

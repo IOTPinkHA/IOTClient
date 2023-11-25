@@ -26,6 +26,7 @@ nav ul li a {
     color: #fff;
     text-decoration: none;
 }
+
 nav ul li:last-child {
     float: right; /* Chuyển mục cuối cùng sang phải */
 }
@@ -62,21 +63,25 @@ textarea {
     box-sizing: border-box;
 }
 
-input[type="file"]
-
-.custom-button {
-    background-color: #4caf50;
-    color: white;
-    padding: 14px 20px;
+button.custom-button {
+    margin-top: 20px;
+    background-color: #4CAF50;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
     font-size: 16px;
-    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition-duration: 0.4s;
 }
 
-.custom-button:hover {
-    background-color: #45a049;
+button.custom-button:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
 }
 
 footer {
