@@ -77,7 +77,8 @@
                 const cells = $(row).find('td, th')
                 let line = ''
                 cells.each((index, cell) => {
-                    line += index !== cells.length - 1 ? $(cell).html() + ',' : $(cell).html()
+                    const value = $(cell).html().replace('\n', '');
+                    line += index !== cells.length - 1 ? value + ',' : value
                 });
                 data += line + '\n'
             });
